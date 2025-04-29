@@ -11,29 +11,24 @@ export default class Pawn extends Piece {
         let location = board.findPiece(this);
         let oneSquareInFront;
         let twoSquaresInFront;
+        let startingRow;
         if (this.player === Player.WHITE) {
             oneSquareInFront = Square.at(location.row + 1, location.col);
             twoSquaresInFront = Square.at(location.row + 2, location.col);
-            if(board.getPiece(oneSquareInFront)) {
-                return [];
-            }
-            if (board.getPiece(twoSquaresInFront) || location.row !== 1) {
-                return new Array (oneSquareInFront)
-            } else {
-                return new Array (oneSquareInFront, twoSquaresInFront)
-            }
+            startingRow = 1;
         }
         else {
             oneSquareInFront = Square.at(location.row - 1, location.col);
             twoSquaresInFront = Square.at(location.row - 2, location.col);
-            if(board.getPiece(oneSquareInFront)) {
-                return [];
-            }
-            if (board.getPiece(twoSquaresInFront) || location.row !== 6) {
-                return new Array (oneSquareInFront)
-            } else {
-                return new Array (oneSquareInFront, twoSquaresInFront)
-            }
+            startingRow = 6;
+        }
+        
+        if(board.getPiece(oneSquareInFront)) {
+            return new Array(0);
+        } else if (board.getPiece(twoSquaresInFront) || location.row !== startingRow) {
+            return new Array (oneSquareInFront);
+        } else {
+            return new Array (oneSquareInFront, twoSquaresInFront);
         }
     }
 }
