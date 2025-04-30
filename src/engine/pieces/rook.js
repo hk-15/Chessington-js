@@ -35,7 +35,7 @@ export default class Rook extends Piece {
                 availableMoves.push(Square.at(i, location.col))
             }
         }
-
+        
         availableMoves.forEach((square) => {
             if (isSquareOccupied(square)) {
                 occupiedSquares.push(square);
