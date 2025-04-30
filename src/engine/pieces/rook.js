@@ -24,20 +24,19 @@ export default class Rook extends Piece {
 
         let location = board.findPiece(this);
         const boardSize = GameSettings.BOARD_SIZE;
-        let allMoves = [];
         let availableMoves = [];
         let occupiedSquares = [];
 
         for (let i = 0; i < boardSize; i++) {
             if (i != location.col) {
-                allMoves.push(Square.at(location.row, i))
+                availableMoves.push(Square.at(location.row, i))
             }
             if (i != location.row) {
-                allMoves.push(Square.at(i, location.col))
+                availableMoves.push(Square.at(i, location.col))
             }
         }
 
-        allMoves.forEach((square) => {
+        availableMoves.forEach((square) => {
             if (isSquareOccupied(square)) {
                 occupiedSquares.push(square);
             }
@@ -78,27 +77,27 @@ export default class Rook extends Piece {
             }
         }
         
-        for (let i = 0; i < allMoves.length; i++) {
+        for (let i = 0; i < availableMoves.length; i++) {
             for (let j = 0; j < inaccessibleSquares.length; j++) {
                 if (inaccessibleSquares[j].col !== location.col) {
-                    if (allMoves[i].col === inaccessibleSquares[j].col) {
-                        allMoves.splice(i, 1);
+                    if (availableMoves[i].col === inaccessibleSquares[j].col) {
+                        availableMoves.splice(i, 1);
                     }
                 }
 
                 if (inaccessibleSquares[j].row !== location.row) {
-                    if (allMoves[i].row === inaccessibleSquares[j].row) {
-                        allMoves.splice(i, 1);
+                    if (availableMoves[i].row === inaccessibleSquares[j].row) {
+                        availableMoves.splice(i, 1);
                     }
                 }
                 
             }
-            if (isSquareOccupied(allMoves[i])) {
-                if (checkIsPieceKing(allMoves[i]) || this.player === board.getPiece(allMoves[i]).player) {
-                    allMoves.splice(i, 1);
+            if (isSquareOccupied(availableMoves[i])) {
+                if (checkIsPieceKing(availableMoves[i]) || this.player === board.getPiece(availableMoves[i]).player) {
+                    availableMoves.splice(i, 1);
                 }
             }
         }
-        return allMoves;
+        return availableMoves;
     }
 }
