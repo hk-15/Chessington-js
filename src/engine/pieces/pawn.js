@@ -15,6 +15,13 @@ export default class Pawn extends Piece {
             return false;
         }
 
+        function checkIsPieceKing(square) {
+            if (board.getPiece(square).constructor.name === 'King') {
+                return true;
+            }
+            return false;
+        }
+
         let location = board.findPiece(this);
         let availableMoves = [];
         let oneSquareInFront;
@@ -46,7 +53,7 @@ export default class Pawn extends Piece {
             }
 
             diagonalLeftAndRightSquares.forEach((square) => {
-                if (isSquareOccupied(square) && this.player !== board.getPiece(square).player && board.getPiece(square).constructor.name !== 'King') {
+                if (isSquareOccupied(square) && this.player !== board.getPiece(square).player && !checkIsPieceKing(square)) {
                     availableMoves.push(square);
                 }
             })

@@ -15,6 +15,13 @@ export default class Rook extends Piece {
             return false;
         }
 
+        function checkIsPieceKing(square) {
+            if (board.getPiece(square).constructor.name === 'King') {
+                return true;
+            }
+            return false;
+        }
+
         let location = board.findPiece(this);
         const boardSize = GameSettings.BOARD_SIZE;
         let allMoves = [];
@@ -85,6 +92,11 @@ export default class Rook extends Piece {
                     }
                 }
                 
+            }
+            if (isSquareOccupied(allMoves[i])) {
+                if (checkIsPieceKing(allMoves[i]) || this.player === board.getPiece(allMoves[i]).player) {
+                    allMoves.splice(i, 1);
+                }
             }
         }
         return allMoves;
