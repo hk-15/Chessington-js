@@ -26,7 +26,44 @@ export default class Rook extends Piece {
         const boardSize = GameSettings.BOARD_SIZE;
         let availableMoves = [];
         let occupiedSquares = [];
-
+        /*
+        let row = location.row;
+        let col = location.col + 1;
+        let square = Square.at(row, col)
+        while (col < boardSize) {
+            if (isSquareOccupied(square)) {
+                break;
+            }
+            availableMoves.push(square);
+            col++;
+        }
+        col = location.col - 1;
+        while (col >= 0) {
+            if (isSquareOccupied(square)) {
+                break;
+            }
+            availableMoves.push(square);
+            col--;
+        }
+        col = location.col;
+        row = location.row + 1;
+        while (row < boardSize) {
+            if (isSquareOccupied(square)) {
+                break;
+            }
+            availableMoves.push(square);
+            row++;
+        }
+        row = location.row - 1;
+        while (row >= 0) {
+            if (isSquareOccupied(square)) {
+                break;
+            }
+            availableMoves.push(square);
+            row--;
+        }
+            */
+        
         for (let i = 0; i < boardSize; i++) {
             if (i != location.col) {
                 availableMoves.push(Square.at(location.row, i))
@@ -35,7 +72,7 @@ export default class Rook extends Piece {
                 availableMoves.push(Square.at(i, location.col))
             }
         }
-        
+
         availableMoves.forEach((square) => {
             if (isSquareOccupied(square)) {
                 occupiedSquares.push(square);
@@ -98,6 +135,7 @@ export default class Rook extends Piece {
                 }
             }
         }
+    
         return availableMoves;
     }
 }

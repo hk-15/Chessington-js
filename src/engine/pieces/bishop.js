@@ -19,51 +19,47 @@ export default class Bishop extends Piece {
         const boardSize = GameSettings.BOARD_SIZE;
         const availableMoves = [];
         
-        let i = location.row + 1;
-        let j = location.col + 1;
-        while (j >= 0 && j < boardSize) {
-            availableMoves.push(Square.at(i, j));
-            i++;
-            j++;
-        }
-        i = location.row + 1;
-        j = location.col - 1;
-        while (j >= 0 && j < boardSize) {
-            availableMoves.push(Square.at(i, j));
-            i++;
-            j--;
-        }
-        i = location.row - 1;
-        j = location.col + 1;
-        while (i >= 0 && i < boardSize) {
-            availableMoves.push(Square.at(i, j));
-            i--;
-            j++;
-        }
-        i = location.row - 1;
-        j = location.col - 1;
-        while (i >= 0 && i < boardSize) {
-            availableMoves.push(Square.at(i, j));
-            i--;
-            j--;
-        }
-        
-        for (let i = 0; i < availableMoves.length; i++) {
-            console.log(isSquareOccupied(availableMoves[i]))
-            if (isSquareOccupied(availableMoves[i])) {
-                if (availableMoves[i].col > location.col && availableMoves[i].row > location.row) {
-                    let loopCol = availableMoves[i].col + 1;
-                    let loopRow = availableMoves[i].row + 1;
-                    while (loopCol < boardSize && loopRow < boardSize) {
-                        availableMoves.splice(i, 1);
-                        loopCol++;
-                        loopRow++;
-                    }
-                }  
+        let row = location.row + 1;
+        let col = location.col + 1;
+        while (row < boardSize && col < boardSize) {
+            if (isSquareOccupied(Square.at(row, col))) {
+                break;
             }
+            availableMoves.push(Square.at(row, col));
+            row++;
+            col++;
         }
-        
-
+        row = location.row + 1;
+        col = location.col - 1;
+        while (col >= 0 && row < boardSize) {
+            if (isSquareOccupied(Square.at(row, col))) {
+                break;
+            }
+            availableMoves.push(Square.at(row, col));
+            row++;
+            col--;
+        }
+        row = location.row - 1;
+        col = location.col + 1;
+        while (row >= 0 && col < boardSize) {
+            if (isSquareOccupied(Square.at(row, col))) {
+                break;
+            }
+            availableMoves.push(Square.at(row, col));
+            row--;
+            col++;
+        }
+        row = location.row - 1;
+        col = location.col - 1;
+        while (row >= 0 && col >= 0) {
+            if (isSquareOccupied(Square.at(row, col))) {
+                break;
+            }
+            availableMoves.push(Square.at(row, col));
+            row--;
+            col--;
+        }
+    
         return availableMoves;
     }
 }
