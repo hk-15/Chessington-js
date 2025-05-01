@@ -1,4 +1,5 @@
 import Queen from '../../../src/engine/pieces/queen';
+import Bishop from '../../../src/engine/pieces/bishop';
 import Board from '../../../src/engine/board';
 import Player from '../../../src/engine/player';
 import Square from '../../../src/engine/square';
@@ -47,5 +48,27 @@ describe('Queen', () => {
         const moves = queen.getAvailableMoves(board);
 
         moves.should.have.length(25);
+    })
+
+    it('cannot move through friendly pieces', () => {
+        const queen = new Queen(Player.WHITE);
+        const friendlyPiece = new Bishop(Player.WHITE);
+        board.setPiece(Square.at(6, 2), queen);
+        board.setPiece(Square.at(2, 6), friendlyPiece);
+
+        const moves = queen.getAvailableMoves(board);
+
+        moves.should.not.deep.include(Square.at(1, 7));
+    })
+
+    it('cannot move through opposing pieces', () => {
+        const queen = new Queen(Player.WHITE);
+        const opposingPiece = new Bishop(Player.BLACK);
+        board.setPiece(Square.at(6, 2), queen);
+        board.setPiece(Square.at(1, 2), opposingPiece);
+
+        const moves = queen.getAvailableMoves(board);
+
+        moves.should.not.deep.include(Square.at(0, 2));
     })
 });
