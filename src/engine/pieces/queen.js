@@ -18,7 +18,12 @@ export default class Queen extends Piece {
         while (col < boardSize) {
             blockingPiece = board.getPiece(Square.at(row, col));
             if (blockingPiece) {
-                break;
+                if (blockingPiece.player !== this.player && blockingPiece.constructor.name !== 'King') {
+                    availableMoves.push(Square.at(row, col))
+                    break;
+                } else {
+                    break;
+                }
             }
             availableMoves.push(Square.at(row, col));
             col++;
@@ -27,7 +32,12 @@ export default class Queen extends Piece {
         while (col >= 0) {
             blockingPiece = board.getPiece(Square.at(row, col));
             if (blockingPiece) {
-                break;
+                if (blockingPiece.player !== this.player && blockingPiece.constructor.name !== 'King') {
+                    availableMoves.push(Square.at(row, col))
+                    break;
+                } else {
+                    break;
+                }
             }
             availableMoves.push(Square.at(row, col));
             col--;
@@ -37,7 +47,12 @@ export default class Queen extends Piece {
         while (row < boardSize) {
             blockingPiece = board.getPiece(Square.at(row, col));
             if (blockingPiece) {
-                break;
+                if (blockingPiece.player !== this.player && blockingPiece.constructor.name !== 'King') {
+                    availableMoves.push(Square.at(row, col))
+                    break;
+                } else {
+                    break;
+                }
             }
             availableMoves.push(Square.at(row, col));
             row++;
@@ -46,7 +61,12 @@ export default class Queen extends Piece {
         while (row >= 0) {
             blockingPiece = board.getPiece(Square.at(row, col));
             if (blockingPiece) {
-                break;
+                if (blockingPiece.player !== this.player && blockingPiece.constructor.name !== 'King') {
+                    availableMoves.push(Square.at(row, col))
+                    break;
+                } else {
+                    break;
+                }
             }
             availableMoves.push(Square.at(row, col));
             row--;
@@ -57,7 +77,12 @@ export default class Queen extends Piece {
         while (row < boardSize && col < boardSize) {
             blockingPiece = board.getPiece(Square.at(row, col));
             if (blockingPiece) {
-                break;
+                if (blockingPiece.player !== this.player && blockingPiece.constructor.name !== 'King') {
+                    availableMoves.push(Square.at(row, col))
+                    break;
+                } else {
+                    break;
+                }
             }
             availableMoves.push(Square.at(row, col));
             row++;
@@ -68,7 +93,12 @@ export default class Queen extends Piece {
         while (col >= 0 && row < boardSize) {
             blockingPiece = board.getPiece(Square.at(row, col));
             if (blockingPiece) {
-                break;
+                if (blockingPiece.player !== this.player && blockingPiece.constructor.name !== 'King') {
+                    availableMoves.push(Square.at(row, col))
+                    break;
+                } else {
+                    break;
+                }
             }
             availableMoves.push(Square.at(row, col));
             row++;
@@ -79,7 +109,12 @@ export default class Queen extends Piece {
         while (row >= 0 && col < boardSize) {
             blockingPiece = board.getPiece(Square.at(row, col));
             if (blockingPiece) {
-                break;
+                if (blockingPiece.player !== this.player && blockingPiece.constructor.name !== 'King') {
+                    availableMoves.push(Square.at(row, col))
+                    break;
+                } else {
+                    break;
+                }
             }
             availableMoves.push(Square.at(row, col));
             row--;
@@ -90,7 +125,12 @@ export default class Queen extends Piece {
         while (row >= 0 && col >= 0) {
             blockingPiece = board.getPiece(Square.at(row, col));
             if (blockingPiece) {
-                break;
+                if (blockingPiece.player !== this.player && blockingPiece.constructor.name !== 'King') {
+                    availableMoves.push(Square.at(row, col))
+                    break;
+                } else {
+                    break;
+                }
             }
             availableMoves.push(Square.at(row, col));
             row--;
