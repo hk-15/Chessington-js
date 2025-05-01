@@ -7,45 +7,39 @@ export default class Knight extends Piece {
     }
 
     getAvailableMoves(board) {
+        function validateSquare(square) {
+            if (square.row >= 0 && square.row < 8 && square.col >= 0 && square.col < 8) {
+                return true;
+            }
+            return false;
+        }
+        function generateMoves(square) {
+            if (validateSquare(square)) {
+                availableMoves.push(square)
+            }
+        }
         let location = board.findPiece(this);
         const availableMoves = [];
-        let blockingPiece;
 
         let row = location.row + 2;
         let col = location.col + 1;
-        if (row < 8 && col < 8) {
-            availableMoves.push(Square.at(row, col));
-        }
+        generateMoves(Square.at(row, col))
         col -= 2;
-        if (col >= 0) {
-            availableMoves.push(Square.at(row, col));
-        }
+        generateMoves(Square.at(row, col))
         row--;
         col--;
-        if (col >= 0) {
-            availableMoves.push(Square.at(row, col));
-        }
+        generateMoves(Square.at(row, col))
         col += 4;
-        if (col < 8) {
-            availableMoves.push(Square.at(row, col));
-        }
+        generateMoves(Square.at(row, col))
         row -= 2;
-        if (row >= 0) {
-            availableMoves.push(Square.at(row, col));
-        }
+        generateMoves(Square.at(row, col))
         col -= 4;
-        if (col >= 0) {
-            availableMoves.push(Square.at(row, col));
-        }
+        generateMoves(Square.at(row, col))
         row--;
         col++;
-        if (row >= 0) {
-            availableMoves.push(Square.at(row, col));
-        }
+        generateMoves(Square.at(row, col))
         col += 2;
-        if (col < 8) {
-            availableMoves.push(Square.at(row, col));
-        }
+        generateMoves(Square.at(row, col))
         return availableMoves;
     }
 }
